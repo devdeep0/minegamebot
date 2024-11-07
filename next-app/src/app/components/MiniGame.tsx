@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useActiveAccount, useReadContract } from 'thirdweb/react';
 import { getBalance } from 'thirdweb/extensions/erc20';
 import { getContract } from 'thirdweb';
-import { sepolia } from 'thirdweb/chains';
+import { optimism, sepolia } from 'thirdweb/chains';
 import { client } from '../client';
 
 interface Monster {
@@ -31,8 +31,8 @@ const MiniGame: React.FC = () => {
 
     const contract = getContract({
         client: client,
-        chain: sepolia,
-        address: "0x3253bac87e39838945Eceb45941f409fB8DB70B9"
+        chain: optimism,
+        address: " 0xabF02c3A7bbd33381b8B4942f2b25e4ab8A6490a"
     });
 
     const { data: tokenBalance, refetch: refetchTokenBalance } = useReadContract(
