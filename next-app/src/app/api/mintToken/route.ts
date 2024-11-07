@@ -5,12 +5,14 @@ const {
   NFT_CONTRACT_ADDRESS,
   ENGINE_URL,
   THIRDWEB_SECRET_KEY,
+  ACCESS_TOKEN
 } = process.env;
 
 async function checkTransactionStatus(queueId: string): Promise<boolean> {
   const statusResponse = await fetch(`${ENGINE_URL}/transaction/status/${queueId}`, {
     headers: {
       Authorization: `Bearer ${THIRDWEB_SECRET_KEY}`,
+      "access-token": `${ACCESS_TOKEN}`,
     },
   });
 
@@ -43,18 +45,18 @@ export async function POST(request: Request) {
   const { userWalletAddress, amount } = await request.json();
 
   const resp = await fetch(
-    `${ENGINE_URL}/contract/sepolia/${NFT_CONTRACT_ADDRESS}/erc20/mint-to`,
+    `${ENGINE_URL}/contract/10/${NFT_CONTRACT_ADDRESS}/erc20/claim-to`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${THIRDWEB_SECRET_KEY}`,
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
         "x-backend-wallet-address": BACKEND_WALLET_ADDRESS,
       },
       body: JSON.stringify({
-        toAddress: userWalletAddress,
+        recipient: userWalletAddress,
         amount: amount,
-      }),
+      })
     }
   );
 

@@ -32,7 +32,7 @@ const MiniGame: React.FC = () => {
     const contract = getContract({
         client: client,
         chain: optimism,
-        address: " 0xabF02c3A7bbd33381b8B4942f2b25e4ab8A6490a"
+        address: "0xabF02c3A7bbd33381b8B4942f2b25e4ab8A6490a"
     });
 
     const { data: tokenBalance, refetch: refetchTokenBalance } = useReadContract(
